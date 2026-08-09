@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class ExamplePlugin extends JavaPlugin implements Listener {
+public class ItemRun extends JavaPlugin implements Listener {
     final ArrayList<String> validItems = new ArrayList<>(List.of(
             // Natural Blocks
             "grass_block", "dirt", "stone", "cobblestone", "oak_log",
@@ -35,6 +35,8 @@ public class ExamplePlugin extends JavaPlugin implements Listener {
             "string", "spider_eye", "rotten_flesh", "bone", "gunpowder",
             "leather", "feathers", "ink_sac", "slimeball", "sugar_cane"));
 
+    StartItemRun startGame = new StartItemRun();
+
     private String getNextItem() {
         Random random = new Random();
         int randomIndex = random.nextInt(validItems.size());
@@ -49,6 +51,7 @@ public class ExamplePlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage(Component.text("Hello, " + event.getPlayer().getName() + "!"));
+        startGame.giveBlindness(event.getPlayer(), 10);
     }
 
     @EventHandler

@@ -1,6 +1,6 @@
-name: ExamplePlugin
+name: ItemRun
 version: 1.0.0
-main: io.papermc.testplugin.ExamplePlugin
+main: io.papermc.testplugin.ItemRun
 description: An example plugin
 author: PaperMC
 website: https://papermc.io

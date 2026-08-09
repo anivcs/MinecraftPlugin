@@ -1,1 +1,1 @@
-rootProject.name = "example-plugin"
+rootProject.name = "item-run"
