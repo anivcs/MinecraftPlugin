@@ -35,7 +35,7 @@ public class ItemRun extends JavaPlugin implements Listener {
             "string", "spider_eye", "rotten_flesh", "bone", "gunpowder",
             "leather", "feathers", "ink_sac", "slimeball", "sugar_cane"));
 
-    StartItemRun startGame = new StartItemRun();
+//    StartItemRun startGame = new StartItemRun();
 
     private String getNextItem() {
         Random random = new Random();
@@ -46,12 +46,14 @@ public class ItemRun extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
+        this.getCommand("itemrun").setExecutor(new CommandExecutor());
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.getPlayer().sendMessage(Component.text("Hello, " + event.getPlayer().getName() + "!"));
-        startGame.giveBlindness(event.getPlayer(), 10);
+//        startGame.giveBlindness(event.getPlayer(), 10);
+
     }
 
     @EventHandler

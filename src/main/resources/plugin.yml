@@ -5,3 +5,8 @@ description: An example plugin
 author: PaperMC
 website: https://papermc.io
 api-version: '1.21.10'
+commands:
+  itemrun:
+    description: This starts the itemrun plugin.
+    permission: ItemRun.itemrun
+    permission message: You don't have ItemRun.itemrun!
