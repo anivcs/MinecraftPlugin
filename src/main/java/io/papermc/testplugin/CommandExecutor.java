@@ -1,10 +1,13 @@
 package io.papermc.testplugin;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.Bukkit.getName;
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 
@@ -24,7 +27,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             case "start" -> {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    player.sendMessage("Success!");
+                    player.sendMessage(ChatColor.GREEN + "Game started!");
                     StartItemRun startItemRun = new StartItemRun();
                     startItemRun.giveBlindness(player, 10);
                 } else {
@@ -35,7 +38,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             case "pause" -> {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    player.sendMessage("Game Paused.");
+                    player.sendMessage(ChatColor.GOLD + "Game Paused.");
                 } else {
                     getLogger().info("This command must be run by a player!");
                 }
@@ -44,7 +47,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             case "resume" -> {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    player.sendMessage("Game Resumed");
+                    player.sendMessage(ChatColor.GOLD + "Game Resumed");
                     getLogger().info("This command must be run by a player!");
                 }
                 yield true;
@@ -52,7 +55,25 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             case "quit" -> {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    player.sendMessage("Game Quit.");
+                    player.sendMessage(ChatColor.RED + "Game ended.");
+                } else {
+                    getLogger().info("This command must be run by a player!");
+                }
+                yield true;
+            }
+            case "team_runner" -> {
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
+                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + player.getName() + " is added to Team Speedrunner.");
+                } else {
+                    getLogger().info("This command must be run by a player!");
+                }
+                yield true;
+            }
+            case "team_hunter" -> {
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
+                    player.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + player.getName() + " is added to Team Hunter.");
                 } else {
                     getLogger().info("This command must be run by a player!");
                 }
