@@ -11,10 +11,14 @@ import static org.bukkit.Bukkit.getName;
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 
+    private final ItemRun plugin;
+
+    public CommandExecutor(ItemRun plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        getLogger().info("Command sent: " + command.getName());
-        getLogger().info("Args sent: " + (args == null ? "none" : args[0]));
         if (!command.getName().equalsIgnoreCase("itemrun")) {
             return false;
         }
@@ -28,8 +32,9 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     player.sendMessage(ChatColor.GREEN + "Game started!");
-                    StartItemRun startItemRun = new StartItemRun();
-                    startItemRun.giveBlindness(player, 10);
+                    StartItemRun startItemRun = new StartItemRun(player, player, plugin.freezer);
+                    startItemRun.run();
+
                 } else {
                     getLogger().info("This command must be run by a player!");
                 }
