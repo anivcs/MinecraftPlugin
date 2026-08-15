@@ -38,7 +38,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                         yield true;
                     }
                     player.sendMessage(ChatColor.GREEN + "Game started!");
-                    StartItemRun startItemRun = new StartItemRun(player, player, plugin.freezer);
+                    StartItemRun startItemRun = new StartItemRun(player, player, plugin);
                     startItemRun.run();
 
 

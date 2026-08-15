@@ -11,15 +11,13 @@ import org.bukkit.potion.PotionEffectType;
 public class StartItemRun {
     Player runner;
     Player hunter;
-    FreezeListener freezer;
-    ItemGenerator itemGenerator;
+    ItemRun plugin;
 
 
-    public StartItemRun(Player runner, Player hunter, FreezeListener freezer) {
+    public StartItemRun(Player runner, Player hunter, ItemRun plugin) {
         this.hunter = hunter;
         this.runner = runner;
-        this.freezer = freezer;
-        this.itemGenerator = new ItemGenerator();
+        this.plugin = plugin;
     }
 
     private void giveBlindness(LivingEntity player, int seconds) {
@@ -28,17 +26,19 @@ public class StartItemRun {
 
     private void runnerHeadstart(int seconds) {
         this.giveBlindness(hunter, seconds);
-        freezer.freezePlayer(hunter, seconds);
+        plugin.freezer.freezePlayer(hunter, seconds);
 
     }
 
-    private void setTargetItem() {
-        String targetItem = itemGenerator.generateNextItem();
+    private void setTargetItemAndPlayer() {
+        String targetItem = plugin.itemGenerator.generateNextItem();
+        plugin.itemDetector.setTargetItem(targetItem);
+        plugin.itemDetector.setPlayer(runner);
         runner.sendMessage(Component.text(ChatColor.RED + "You must find " + targetItem + "!"));
     }
 
     public void run() {
-        this.setTargetItem();
+        this.setTargetItemAndPlayer();
         this.runnerHeadstart(10);
 
 

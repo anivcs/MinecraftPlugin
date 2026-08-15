@@ -14,6 +14,8 @@ repositories {
 }
 
 dependencies {
+//    compileOnly("com.google.code.gson:gson:2.14.0")
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
+
 }
 
