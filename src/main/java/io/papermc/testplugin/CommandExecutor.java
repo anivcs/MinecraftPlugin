@@ -31,9 +31,19 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             case "start" -> {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
+                    boolean success = TeleportPlayer.notOceanSpawn(player, 950, 1050);
+
+                    if (!success) {
+                        player.sendMessage(ChatColor.DARK_RED + "Could not find a safe location to spawn. Please try again!");
+                        yield true;
+                    }
                     player.sendMessage(ChatColor.GREEN + "Game started!");
                     StartItemRun startItemRun = new StartItemRun(player, player, plugin.freezer);
                     startItemRun.run();
+
+
+
+
 
                 } else {
                     getLogger().info("This command must be run by a player!");
