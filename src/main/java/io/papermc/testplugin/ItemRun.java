@@ -2,6 +2,7 @@ package io.papermc.testplugin;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -42,9 +43,12 @@ public class ItemRun extends JavaPlugin implements Listener {
         Objects.requireNonNull(this.getCommand("itemrun")).setExecutor(new CommandExecutor(this));
     }
 
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
         event.getPlayer().sendMessage(Component.text("Hello, " + event.getPlayer().getName() + "!"));
+        PlayerScoreboard.showScoreboard(player);
     }
 
 
